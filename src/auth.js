@@ -1,6 +1,7 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { login } from "./services/auth-service";
+import { isUserAuthorized } from "./helpers/auth";
 
 const config = {
 	providers: [
@@ -32,8 +33,17 @@ const config = {
 			//console.log(`isOnLoginPage:`, isOnLoginPage)
 
 			if(isLoggedIn){
+				if(isOnDashboardPage){
+					const isAuth= isUserAuthorized(
+						auth.user.role,
+						nextUrl.pathname
+					);
+					if(isAuth) return true;
+					return Response.redirect(new URL("/unauthorized",nextUrl))
 
-				if(isOnLoginPage){
+				}
+
+			else if(isOnLoginPage){
 					return Response.redirect(new URL('/dashboard', nextUrl))
 				}
 			}

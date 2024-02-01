@@ -31,7 +31,7 @@ export const createManager = async (payload) => {
     });
 };
 export const updateManager = async (payload) => {
-    return fetch(`${API_URL}/dean/update/${payload.id}`, {
+    return fetch(`${API_URL}/dean/update/${payload.userId}`, {
         method: "put",
         headers: await getAuthHeader(),
         body: JSON.stringify(payload)

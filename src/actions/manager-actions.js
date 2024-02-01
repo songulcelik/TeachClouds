@@ -4,7 +4,7 @@ import {
     getYupErrors,
     response,
 } from "@/helpers/form-validation";
-import { createManager, deleteManager } from "@/services/manager-service";
+import { createManager, deleteManager, updateManager } from "@/services/manager-service";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import * as Yup from "yup";
@@ -39,6 +39,25 @@ export const createManagerAction = async (prevState, formData) => {
         const fields = convertFormDataToJson(formData);
         FormSchema.validateSync(fields, { abortEarly: false });
         const res = await createManager(fields);
+        const data = await res.json();
+        if (!res.ok) {
+            return response(false, "", data?.validations);
+        }
+    } catch (err) {
+        if (err instanceof Yup.ValidationError) {
+            return getYupErrors(err.inner);
+        }
+        throw err;
+    }
+    revalidatePath("/dashboard/manager");
+    redirect("/dashboard/manager?success=true");
+};
+
+export const updateManagerAction = async (prevState, formData) => {
+    try {
+        const fields = convertFormDataToJson(formData);
+        FormSchema.validateSync(fields, { abortEarly: false });
+        const res = await updateManager(fields);
         const data = await res.json();
         if (!res.ok) {
             return response(false, "", data?.validations);
