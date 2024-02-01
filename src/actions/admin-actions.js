@@ -5,7 +5,7 @@ import {
 	getYupErrors,
 	response,
 } from "@/helpers/form-validation";
-import { createAdmin } from "@/services/admin-service";
+import { createAdmin, deleteAdmin } from "@/services/admin-service";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import * as Yup from "yup";
@@ -59,4 +59,15 @@ export const createAdminAction = async (prevState, formData) => {
 
 	revalidatePath("/dashboard/admin");
 	redirect("/dashboard/admin?success=true");
+};
+
+
+export const deleteAdminAction = async (id) => {
+    if (!id) throw new Error("id is missing");
+    const res = await deleteAdmin(id);
+    const data = res.json();
+    if (!res.ok) {
+        throw new Error(data.message);
+    }
+    revalidatePath("/dashboard/admin");
 };

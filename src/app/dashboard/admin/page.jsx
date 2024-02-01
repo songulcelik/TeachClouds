@@ -7,7 +7,7 @@ import React from "react";
 const AdminPage = async ({ searchParams }) => {
 	const { page } = searchParams;
 
-	const res = await getAllAdminsByPage(page, 3);
+	const res = await getAllAdminsByPage(page);
 	const data = await res.json();
 	if (!res.ok) throw new Error(data.message);
 
