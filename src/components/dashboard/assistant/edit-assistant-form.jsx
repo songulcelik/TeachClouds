@@ -1,5 +1,5 @@
 "use client";
-import { updateManagerAction } from "@/actions/manager-actions";
+import { updateAssistantAction } from "@/actions/assistant-actions";
 import CancelButton from "@/components/common/form-fields/cancel-button";
 import SubmitButton from "@/components/common/form-fields/submit-button";
 import { config } from "@/helpers/config";
@@ -7,9 +7,9 @@ import { initialResponse, isInvalid } from "@/helpers/form-validation";
 import { useFormState } from "react-dom";
 import InputMask from "react-input-mask-next";
 
-const EditManagerForm = ({ data }) => {
+const EditAssistantForm = ({ data }) => {
 	const [state, dispatch] = useFormState(
-		updateManagerAction,
+		updateAssistantAction,
 		initialResponse
 	);
 
@@ -228,4 +228,4 @@ const EditManagerForm = ({ data }) => {
 	);
 };
 
-export default EditManagerForm;
+export default EditAssistantForm;

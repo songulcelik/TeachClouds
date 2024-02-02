@@ -1,25 +1,25 @@
 import DataTable, { Column } from "@/components/common/form-fields/data-table";
 import Link from "next/link";
 import React from "react";
-import ManagerToolbar from "./manager-toolbar";
+import AssistantToolbar from "./assistant-toolbar";
 
-const ManagerList = ({ data }) => {
+const AssistantList = ({ data }) => {
 	const { content, totalPages, number, size } = data;
 
 	const handleToolbar = (row) => {
-		return <ManagerToolbar row={row} />;
+		return <AssistantToolbar row={row} />;
 	};
 
 	return (
 		<div className="container">
 			<Link
-				href="/dashboard/manager/new"
+				href="/dashboard/assistant-manager/new"
 				className="btn btn-primary mb-3"
 			>
 				New
 			</Link>
 			<DataTable
-				title="Manager List"
+				title="Assistant List"
 				dataSource={content}
 				dataKey="userId"
 				pagination={true}
@@ -37,4 +37,4 @@ const ManagerList = ({ data }) => {
 	);
 };
 
-export default ManagerList;
+export default AssistantList;

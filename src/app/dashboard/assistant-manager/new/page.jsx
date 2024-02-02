@@ -1,18 +1,17 @@
 import PageHeader from '@/components/common/page-header'
 import Spacer from '@/components/common/spacer'
-import NewManagerForm from '@/components/dashboard/manager/new-manager-form'
-
+import NewAssistantForm from '@/components/dashboard/assistant/new-assistant-form'
 import React from 'react'
 
-const NewManagerPage = () => {
+const NewAssistantPage = () => {
   return (
     <>
-    <PageHeader title="New Admin"/>
+    <PageHeader title="New Assistant"/>
     <Spacer height={50}/>
-   <NewManagerForm/>
+    <NewAssistantForm/>
     <Spacer/>
     </>
   )
 }
 
-export default NewManagerPage
+export default NewAssistantPage

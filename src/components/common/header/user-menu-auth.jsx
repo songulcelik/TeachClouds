@@ -22,7 +22,6 @@ const UserMenuAuth = async ({ session }) => {
 
 			<div
 				className="offcanvas offcanvas-start"
-				data-bs-backdrop="static"
 				tabIndex="-1"
 				id="Id2"
 				aria-labelledby="staticBackdropLabel"

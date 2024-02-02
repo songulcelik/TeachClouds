@@ -7,7 +7,7 @@ import React from "react";
 const ManagerPage = async ({ searchParams }) => {
 	const { page } = searchParams;
 
-	const res = await getAllManagersByPage(page, 3);
+	const res = await getAllManagersByPage(page);
 	const data = await res.json();
 	if (!res.ok) throw new Error(data.message);
 
@@ -15,7 +15,7 @@ const ManagerPage = async ({ searchParams }) => {
 		<>
 			<PageHeader title="Manager" />
 			<Spacer height={50} />
-			<ManagerList data={data}/>
+            <ManagerList data={data}/>
 			<Spacer />
 		</>
 	);

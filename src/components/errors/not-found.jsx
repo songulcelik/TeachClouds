@@ -4,7 +4,7 @@ import React from "react";
 const NotFound = () => {
 	return (
 		<div className="container">
-			<div className="row g-5 g-sm-0 align-items-center">
+			<div className="row g-5 g-sm-0 align-items-center ">
 				<div className="col-sm-6">
 					<Image
 						src="/images/errors/404.png"

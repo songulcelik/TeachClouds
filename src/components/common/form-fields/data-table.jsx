@@ -151,7 +151,6 @@ const DataTable = ({
 											} else if (field) {
 												cellData = row[field];
 											} else if (template) {
-												console.log(typeof template);
 												if (
 													typeof template !==
 													"function"
