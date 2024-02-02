@@ -1,9 +1,15 @@
-import React from 'react'
+import Spacer from "@/components/common/spacer";
+import UnAuthorized from "@/components/errors/unauthorized";
+import React from "react";
 
 const UnauthorizedPage = () => {
-  return (
-    <div>UnauthorizedPage</div>
-  )
-}
+	return (
+		<>
+			<Spacer />
+			<UnAuthorized />
+			<Spacer />
+		</>
+	);
+};
 
-export default UnauthorizedPage
+export default UnauthorizedPage;
