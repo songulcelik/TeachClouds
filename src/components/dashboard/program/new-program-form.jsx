@@ -1,6 +1,7 @@
 "use client";
 import { createProgramAction } from "@/actions/program-actions";
 import CancelButton from "@/components/common/form-fields/cancel-button";
+import MultiSelect from "@/components/common/form-fields/multi-select";
 import SubmitButton from "@/components/common/form-fields/submit-button";
 import { config } from "@/helpers/config";
 import { initialResponse, isInvalid } from "@/helpers/form-validation";
@@ -35,6 +36,7 @@ const NewProgramForm = ({terms, lessons}) => {
     <li><a class="dropdown-item" href="#">Something else here</a></li>
   </ul>
 </div>
+<MultiSelect/>
                                     <select
                                         className={`form-select ${isInvalid(
                                             state.errors?.educationTermId
