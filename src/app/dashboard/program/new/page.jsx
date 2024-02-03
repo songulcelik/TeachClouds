@@ -1,19 +1,22 @@
-import PageHeader from '@/components/common/page-header'
-import Spacer from '@/components/common/spacer'
-import NewProgramForm from '@/components/dashboard/program/new-program-form'
-
-
-import React from 'react'
-
-const NewProgramPage = () => {
-  return (
-    <>
-    <PageHeader title="New Term"/>
-    <Spacer height={50}/>
-    <NewProgramForm/>
-    <Spacer/>
-    </>
-  )
-}
-
-export default NewProgramPage
+import PageHeader from "@/components/common/page-header";
+import Spacer from "@/components/common/spacer";
+import NewProgramForm from "@/components/dashboard/program/new-program-form";
+import { getAllLessons } from "@/services/lesson-service";
+import { getAllTerms } from "@/services/term-service";
+import React from "react";
+const NewProgramPage = async () => {
+    const dataTerm = (await getAllTerms()).json();
+    const dataLesson = (await getAllLessons()).json();
+    const [terms, lessons] = await Promise.all([dataTerm, dataLesson]);
+  // error handling olmali
+  
+    return (
+        <>
+            <PageHeader title="New Program" />
+            <Spacer height={50} />
+            <NewProgramForm terms={terms} lessons={lessons} />
+            <Spacer />
+        </>
+    );
+};
+export default NewProgramPage;
