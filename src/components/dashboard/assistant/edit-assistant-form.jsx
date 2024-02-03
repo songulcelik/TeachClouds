@@ -19,6 +19,13 @@ const EditAssistantForm = ({ data }) => {
 				<div className="card-body">
 					<div className="card-title">Edit</div>
 
+					{state?.message ? (
+						<div className="alert alert-danger">
+							{state.message}
+						</div>
+					) : null}
+
+
 					<form action={dispatch} noValidate>
 						<input type="hidden" name="userId" value={data.userId}/>
 						<div className="row row-cols-1 row-cols-md-2 row-cols-xl-3">

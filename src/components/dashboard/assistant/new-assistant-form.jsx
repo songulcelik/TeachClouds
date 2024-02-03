@@ -19,6 +19,13 @@ const NewAssistantForm = () => {
 				<div className="card-body">
 					<div className="card-title">New</div>
 
+					{state?.message ? (
+						<div className="alert alert-danger">
+							{state.message}
+						</div>
+					) : null}
+
+
 					<form action={dispatch} noValidate>
 						<div className="row row-cols-1 row-cols-md-2 row-cols-xl-3">
 							<div className="col">

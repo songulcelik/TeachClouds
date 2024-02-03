@@ -1,17 +1,18 @@
 import PageHeader from '@/components/common/page-header'
 import Spacer from '@/components/common/spacer'
-import NewTermForm from '@/components/dashboard/term/new-term-form'
+import NewLessonForm from '@/components/dashboard/lesson/new-lesson-form'
+
 import React from 'react'
 
-const NewTermPage = () => {
+const NewLessonPage = () => {
   return (
     <>
     <PageHeader title="New Term"/>
     <Spacer height={50}/>
-    <NewTermForm/>
+    <NewLessonForm/>
     <Spacer/>
     </>
   )
 }
 
-export default NewTermPage
+export default NewLessonPage

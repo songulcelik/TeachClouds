@@ -48,7 +48,7 @@ export const createAdminAction = async (prevState, formData) => {
 		const data = await res.json();
 
 		if (!res.ok) {
-			return response(false, "", data?.validations);
+			return response(false, data?.message, data?.validations);
 		}
 	} catch (err) {
 		if (err instanceof Yup.ValidationError) {
