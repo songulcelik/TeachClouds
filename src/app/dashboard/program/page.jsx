@@ -2,8 +2,6 @@ import PageHeader from "@/components/common/page-header";
 import Spacer from "@/components/common/spacer";
 import ProgramList from "@/components/dashboard/program/program-list";
 import { getAllProgramsByPage } from "@/services/program-service";
-
-
 import React from "react";
 
 const ProgramPage = async ({ searchParams }) => {

@@ -21,6 +21,7 @@ export const getAllTerms = async () => {
 		headers: await getAuthHeader(),
 	});
 };
+
 export const getTermById = async (id) => {
 	return fetch(`${API_URL}/educationTerms/${id}`, {
 		headers: await getAuthHeader(),
