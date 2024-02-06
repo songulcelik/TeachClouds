@@ -21,3 +21,4 @@ export const isUserAuthorized = (role, url) => {
 	if (!menu) return false;
 	return menu.rights.includes(role);
 };
+

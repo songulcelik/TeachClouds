@@ -12,7 +12,12 @@ import { redirect } from "next/navigation";
 import * as Yup from "yup";
 
 const FormSchema = Yup.object({
-	lessonIdList: Yup.string().required("Required"),
+	lessonIdList: Yup.string()
+		.test("isJson", "Required", (val) => {
+			const arr = JSON.parse(val);
+			return Array.isArray(arr) && arr.length > 0;
+		})
+		.required("Required"),
 	day: Yup.string().oneOf(getDayValues(), "Invalid day").required("Required"),
 	educationTermId: Yup.string().required("Required"),
 	startTime: Yup.string().required("Required"),
@@ -23,9 +28,16 @@ export const createProgramAction = async (prevState, formData) => {
 	try {
 		const fields = convertFormDataToJson(formData);
 
+		console.log(fields);
+
 		FormSchema.validateSync(fields, { abortEarly: false });
 
-		const res = await createProgram(fields);
+		const payload = {
+			...fields,
+			lessonIdList: JSON.parse(fields.lessonIdList)
+		}
+
+		const res = await createProgram(payload);
 		const data = await res.json();
 
 		if (!res.ok) {

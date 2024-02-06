@@ -62,17 +62,17 @@ const NewLessonForm = () => {
 								</div>
 							</div>
 							<div className="col">
-								<div class="form-check">
+								<div className="form-check">
 									<input
-										class="form-check-input"
+										className="form-check-input"
 										type="checkbox"
 										id="compulsory"
 										name="compulsory"
 										value={true}
 									/>
 									<label
-										class="form-check-label"
-										for="compulsory"
+										className="form-check-label"
+										htmlFor="compulsory"
 									>
 										Compulsory
 									</label>

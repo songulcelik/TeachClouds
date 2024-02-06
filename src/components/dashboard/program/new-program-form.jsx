@@ -14,6 +14,8 @@ const NewProgramForm = ({ terms, lessons }) => {
 		initialResponse
 	);
 
+	console.log(lessons)
+
 	const getTermTitle = (item) => {
 		const termItem = config.educationTerms.find(
 			(term) => term.value === item.term
@@ -43,7 +45,7 @@ const NewProgramForm = ({ terms, lessons }) => {
 									options={lessons}
 									optionValue="lessonId"
 									optionLabel="lessonName"
-									placeholder="Select"
+									placeholder="Lessons"
 									id="lessonIdList"
 									error={state.errors?.lessonIdList}
 								/>
