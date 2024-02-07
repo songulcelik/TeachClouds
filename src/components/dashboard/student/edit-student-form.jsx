@@ -1,16 +1,16 @@
 "use client";
-import { createTeacherAction } from "@/actions/teacher-actions";
+
+import { updateStudentAction } from "@/actions/student-actions";
 import CancelButton from "@/components/common/form-fields/cancel-button";
-import MultiSelect from "@/components/common/form-fields/multi-select";
 import SubmitButton from "@/components/common/form-fields/submit-button";
 import { config } from "@/helpers/config";
 import { initialResponse, isInvalid } from "@/helpers/form-validation";
 import { useFormState } from "react-dom";
 import InputMask from "react-input-mask-next";
 
-const NewTeacherForm = ({programs}) => {
+const EditStudentForm = ({ data }) => {
 	const [state, dispatch] = useFormState(
-		createTeacherAction,
+		updateStudentAction,
 		initialResponse
 	);
 
@@ -18,7 +18,7 @@ const NewTeacherForm = ({programs}) => {
 		<div className="container ">
 			<div className="card">
 				<div className="card-body">
-					<div className="card-title">New</div>
+					<div className="card-title">Edit</div>
 
 					{state?.message ? (
 						<div className="alert alert-danger">
@@ -26,9 +26,11 @@ const NewTeacherForm = ({programs}) => {
 						</div>
 					) : null}
 
+
 					<form action={dispatch} noValidate>
-						<div className="row">
-							<div className="col-md-6 col-xl-4">
+						<input type="hidden" name="userId" value={data.userId}/>
+						<div className="row row-cols-1 row-cols-md-2 row-cols-xl-3">
+							<div className="col">
 								<div className="form-floating mb-3">
 									<input
 										type="text"
@@ -38,6 +40,7 @@ const NewTeacherForm = ({programs}) => {
 										id="name"
 										name="name"
 										placeholder="First Name"
+										defaultValue={data.name}
 									/>
 									<label htmlFor="name">First Name</label>
 									<div className="invalid-feedback">
@@ -45,7 +48,7 @@ const NewTeacherForm = ({programs}) => {
 									</div>
 								</div>
 							</div>
-							<div className="col-md-6 col-xl-4">
+							<div className="col">
 								<div className="form-floating mb-3">
 									<input
 										type="text"
@@ -55,6 +58,7 @@ const NewTeacherForm = ({programs}) => {
 										id="surname"
 										name="surname"
 										placeholder="Last Name"
+										defaultValue={data.surname}
 									/>
 									<label htmlFor="surname">Last Name</label>
 									<div className="invalid-feedback">
@@ -62,7 +66,7 @@ const NewTeacherForm = ({programs}) => {
 									</div>
 								</div>
 							</div>
-							<div className="col-md-6 col-xl-4">
+							<div className="col">
 								<div className="form-floating mb-3">
 									<select
 										className={`form-select ${isInvalid(
@@ -70,6 +74,7 @@ const NewTeacherForm = ({programs}) => {
 										)}`}
 										id="gender"
 										name="gender"
+										defaultValue={data.gender}
 									>
 										<option value="">Select</option>
 										{config.genders.map((item) => (
@@ -87,7 +92,7 @@ const NewTeacherForm = ({programs}) => {
 									</div>
 								</div>
 							</div>
-							<div className="col-md-6 col-xl-4">
+							<div className="col">
 								<div className="form-floating mb-3">
 									<input
 										type="date"
@@ -97,6 +102,7 @@ const NewTeacherForm = ({programs}) => {
 										id="birthDay"
 										name="birthDay"
 										placeholder="Birthdate"
+										defaultValue={data.birthDay}
 									/>
 									<label htmlFor="birthDay">Birthdate</label>
 									<div className="invalid-feedback">
@@ -104,7 +110,7 @@ const NewTeacherForm = ({programs}) => {
 									</div>
 								</div>
 							</div>
-							<div className="col-md-6 col-xl-4">
+							<div className="col">
 								<div className="form-floating mb-3">
 									<input
 										type="text"
@@ -114,6 +120,7 @@ const NewTeacherForm = ({programs}) => {
 										id="birthPlace"
 										name="birthPlace"
 										placeholder="Place of birth"
+										defaultValue={data.birthPlace}
 									/>
 									<label htmlFor="birthPlace">
 										Place of birth
@@ -123,7 +130,7 @@ const NewTeacherForm = ({programs}) => {
 									</div>
 								</div>
 							</div>
-							<div className="col-md-6 col-xl-4">
+							<div className="col">
 								<div className="form-floating mb-3">
 									<InputMask
 										className={`form-control ${isInvalid(
@@ -133,6 +140,7 @@ const NewTeacherForm = ({programs}) => {
 										name="phoneNumber"
 										placeholder="Phone number"
 										mask="999-999-9999"
+										defaultValue={data.phoneNumber}
 									/>
 									<label htmlFor="phoneNumber">
 										Phone number
@@ -142,7 +150,7 @@ const NewTeacherForm = ({programs}) => {
 									</div>
 								</div>
 							</div>
-							<div className="col-md-6 col-xl-4">
+							<div className="col">
 								<div className="form-floating mb-3">
 									<InputMask
 										className={`form-control ${isInvalid(
@@ -152,6 +160,7 @@ const NewTeacherForm = ({programs}) => {
 										name="ssn"
 										placeholder="SSN"
 										mask="999-99-9999"
+										defaultValue={data.ssn}
 									/>
 									<label htmlFor="ssn">SSN</label>
 									<div className="invalid-feedback">
@@ -159,54 +168,7 @@ const NewTeacherForm = ({programs}) => {
 									</div>
 								</div>
 							</div>
-							<div className="col-md-6 col-xl-4">
-								<div className="form-floating mb-3">
-									<input
-										type="text"
-										className={`form-control ${isInvalid(
-											state.errors?.email
-										)}`}
-										id="email"
-										name="email"
-										placeholder="Email"
-									/>
-									<label htmlFor="email">Email</label>
-									<div className="invalid-feedback">
-										{state.errors?.email}
-									</div>
-								</div>
-							</div>
-
-							<div className="col-md-6 col-xl-4">
-								<div className="form-check mb-3">
-									<input
-										className="form-check-input"
-										type="checkbox"
-										value="true"
-										id="isAdvisorTeacher"
-										name="isAdvisorTeacher"
-									/>
-									<label
-										className="form-check-label"
-										htmlFor="isAdvisorTeacher"
-									>
-										Is advisor teacher
-									</label>
-								</div>
-							</div>
-
-							<div className="col-12">
-								<MultiSelect
-									options={programs}
-									optionValue="id"
-									optionLabel="label"
-									placeholder="Programs"
-									id="lessonsIdList"
-									error={state.errors?.lessonsIdList}
-								/>
-							</div>
-
-							<div className="col-md-6 col-xl-4">
+							<div className="col">
 								<div className="form-floating mb-3">
 									<input
 										type="text"
@@ -216,6 +178,7 @@ const NewTeacherForm = ({programs}) => {
 										id="username"
 										name="username"
 										placeholder="Username"
+										defaultValue={data.username}
 									/>
 									<label htmlFor="username">Username</label>
 									<div className="invalid-feedback">
@@ -224,7 +187,7 @@ const NewTeacherForm = ({programs}) => {
 								</div>
 							</div>
 
-							<div className="col-md-6 col-xl-4">
+							<div className="col">
 								<div className="form-floating mb-3">
 									<input
 										type="password"
@@ -241,7 +204,7 @@ const NewTeacherForm = ({programs}) => {
 									</div>
 								</div>
 							</div>
-							<div className="col-md-6 col-xl-4">
+							<div className="col">
 								<div className="form-floating mb-3">
 									<input
 										type="password"
@@ -264,7 +227,7 @@ const NewTeacherForm = ({programs}) => {
 
 						<div className="d-flex align-items-center justify-content-center gap-3">
 							<CancelButton />
-							<SubmitButton title="Create" />
+							<SubmitButton title="Update" />
 						</div>
 					</form>
 				</div>
@@ -273,4 +236,4 @@ const NewTeacherForm = ({programs}) => {
 	);
 };
 
-export default NewTeacherForm;
+export default EditStudentForm;

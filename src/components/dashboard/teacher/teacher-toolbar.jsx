@@ -1,10 +1,12 @@
 "use client";
+import { deleteTeacherAction } from "@/actions/teacher-actions";
 import { swalAlert, swalConfirm } from "@/helpers/swal";
 import Link from "next/link";
 import React from "react";
 import { TfiPencil, TfiTrash } from "react-icons/tfi";
 
 const TeacherToolbar = ({ row }) => {
+	console.log(row)
 	const { userId, built_in } = row;
 
 	const handleDelete = async () => {
@@ -12,7 +14,7 @@ const TeacherToolbar = ({ row }) => {
 		if (!res.isConfirmed) return;
 
 		try {
-			const res = await deleteAssistantAction(userId);
+			const res = await deleteTeacherAction(userId);
 		} catch (err) {
 			console.log(err);
 			swalAlert(err.message, "error");
@@ -26,7 +28,7 @@ const TeacherToolbar = ({ row }) => {
 			<Link
 				type="button"
 				className="btn btn-link"
-				href={`/dashboard/assistant-manager/${userId}`}
+				href={`/dashboard/teacher/${userId}`}
 			>
 				<TfiPencil />
 			</Link>

@@ -1,36 +1,29 @@
 "use client";
-import { updateTeacherAction } from "@/actions/teacher-actions";
+import { createStudentAction } from "@/actions/student-actions";
 import CancelButton from "@/components/common/form-fields/cancel-button";
-import MultiSelect from "@/components/common/form-fields/multi-select";
 import SubmitButton from "@/components/common/form-fields/submit-button";
 import { config } from "@/helpers/config";
 import { initialResponse, isInvalid } from "@/helpers/form-validation";
 import { useFormState } from "react-dom";
 import InputMask from "react-input-mask-next";
-const EditTeacherForm = ({ programs, teacher }) => {
+const NewStudentForm = ({advisorTeachers}) => {
     const [state, dispatch] = useFormState(
-        updateTeacherAction,
+        createStudentAction,
         initialResponse
     );
-    const lessonsIdList = teacher.lessonsProgramList.map(item=> item.id.toString())
     return (
         <div className="container ">
             <div className="card">
                 <div className="card-body">
-                    <div className="card-title">Edit</div>
+                    <div className="card-title">New</div>
                     {state?.message ? (
                         <div className="alert alert-danger">
                             {state.message}
                         </div>
                     ) : null}
                     <form action={dispatch} noValidate>
-                        <input
-                            type="hidden"
-                            name="userId"
-                            value={teacher.userId}
-                        />
-                        <div className="row">
-                            <div className="col-md-6 col-xl-4">
+                        <div className="row row-cols-1 row-cols-md-2 row-cols-xl-3">
+                            <div className="col">
                                 <div className="form-floating mb-3">
                                     <input
                                         type="text"
@@ -40,7 +33,6 @@ const EditTeacherForm = ({ programs, teacher }) => {
                                         id="name"
                                         name="name"
                                         placeholder="First Name"
-                                        defaultValue={teacher.name}
                                     />
                                     <label htmlFor="name">First Name</label>
                                     <div className="invalid-feedback">
@@ -48,7 +40,7 @@ const EditTeacherForm = ({ programs, teacher }) => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-md-6 col-xl-4">
+                            <div className="col">
                                 <div className="form-floating mb-3">
                                     <input
                                         type="text"
@@ -58,7 +50,6 @@ const EditTeacherForm = ({ programs, teacher }) => {
                                         id="surname"
                                         name="surname"
                                         placeholder="Last Name"
-                                        defaultValue={teacher.surname}
                                     />
                                     <label htmlFor="surname">Last Name</label>
                                     <div className="invalid-feedback">
@@ -66,7 +57,7 @@ const EditTeacherForm = ({ programs, teacher }) => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-md-6 col-xl-4">
+                            <div className="col">
                                 <div className="form-floating mb-3">
                                     <select
                                         className={`form-select ${isInvalid(
@@ -74,7 +65,6 @@ const EditTeacherForm = ({ programs, teacher }) => {
                                         )}`}
                                         id="gender"
                                         name="gender"
-                                        defaultValue={teacher.gender}
                                     >
                                         <option value="">Select</option>
                                         {config.genders.map((item) => (
@@ -92,7 +82,7 @@ const EditTeacherForm = ({ programs, teacher }) => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-md-6 col-xl-4">
+                            <div className="col">
                                 <div className="form-floating mb-3">
                                     <input
                                         type="date"
@@ -102,7 +92,6 @@ const EditTeacherForm = ({ programs, teacher }) => {
                                         id="birthDay"
                                         name="birthDay"
                                         placeholder="Birthdate"
-                                        defaultValue={teacher.birthDay}
                                     />
                                     <label htmlFor="birthDay">Birthdate</label>
                                     <div className="invalid-feedback">
@@ -110,7 +99,7 @@ const EditTeacherForm = ({ programs, teacher }) => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-md-6 col-xl-4">
+                            <div className="col">
                                 <div className="form-floating mb-3">
                                     <input
                                         type="text"
@@ -120,7 +109,6 @@ const EditTeacherForm = ({ programs, teacher }) => {
                                         id="birthPlace"
                                         name="birthPlace"
                                         placeholder="Place of birth"
-                                        defaultValue={teacher.birthPlace}
                                     />
                                     <label htmlFor="birthPlace">
                                         Place of birth
@@ -130,45 +118,45 @@ const EditTeacherForm = ({ programs, teacher }) => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-md-6 col-xl-4">
+                            <div className="col">
                                 <div className="form-floating mb-3">
-                                    <InputMask
+                                    <input
+                                        type="text"
                                         className={`form-control ${isInvalid(
-                                            state.errors?.phoneNumber
+                                            state.errors?.motherName
                                         )}`}
-                                        id="phoneNumber"
-                                        name="phoneNumber"
-                                        placeholder="Phone number"
-                                        mask="999-999-9999"
-                                        defaultValue={teacher.phoneNumber}
+                                        id="motherName"
+                                        name="motherName"
+                                        placeholder="Mother name"
                                     />
-                                    <label htmlFor="phoneNumber">
-                                        Phone number
+                                    <label htmlFor="motherName">
+                                        Mother name
                                     </label>
                                     <div className="invalid-feedback">
-                                        {state.errors?.phoneNumber}
+                                        {state.errors?.motherName}
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-md-6 col-xl-4">
+                            <div className="col">
                                 <div className="form-floating mb-3">
-                                    <InputMask
+                                    <input
+                                        type="text"
                                         className={`form-control ${isInvalid(
-                                            state.errors?.ssn
+                                            state.errors?.fatherName
                                         )}`}
-                                        id="ssn"
-                                        name="ssn"
-                                        placeholder="SSN"
-                                        mask="999-99-9999"
-                                        defaultValue={teacher.ssn}
+                                        id="fatherName"
+                                        name="fatherName"
+                                        placeholder="Father name"
                                     />
-                                    <label htmlFor="ssn">SSN</label>
+                                    <label htmlFor="fatherName">
+                                        Father name
+                                    </label>
                                     <div className="invalid-feedback">
-                                        {state.errors?.ssn}
+                                        {state.errors?.fatherName}
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-md-6 col-xl-4">
+                            <div className="col">
                                 <div className="form-floating mb-3">
                                     <input
                                         type="text"
@@ -178,7 +166,6 @@ const EditTeacherForm = ({ programs, teacher }) => {
                                         id="email"
                                         name="email"
                                         placeholder="Email"
-                                        defaultValue={teacher.email}
                                     />
                                     <label htmlFor="email">Email</label>
                                     <div className="invalid-feedback">
@@ -186,38 +173,68 @@ const EditTeacherForm = ({ programs, teacher }) => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-md-6 col-xl-4">
-                                <div className="form-check mb-3">
-                                    <input
-                                        className="form-check-input"
-                                        type="checkbox"
-                                        value="true"
-                                        id="isAdvisorTeacher"
-                                        name="isAdvisorTeacher"
-                                        defaultChecked={
-                                            teacher.isAdvisor
-                                        }
+                            <div className="col">
+                                <div className="form-floating mb-3">
+                                    <InputMask
+                                        className={`form-control ${isInvalid(
+                                            state.errors?.phoneNumber
+                                        )}`}
+                                        id="phoneNumber"
+                                        name="phoneNumber"
+                                        placeholder="Phone number"
+                                        mask="999-999-9999"
                                     />
-                                    <label
-                                        className="form-check-label"
-                                        htmlFor="isAdvisorTeacher"
-                                    >
-                                        Is advisor teacher
+                                    <label htmlFor="phoneNumber">
+                                        Phone number
                                     </label>
+                                    <div className="invalid-feedback">
+                                        {state.errors?.phoneNumber}
+                                    </div>
                                 </div>
                             </div>
-                            <div className="col-12">
-                                <MultiSelect
-                                    options={programs}
-                                    optionValue="id"
-                                    optionLabel="label"
-                                    placeholder="Programs"
-                                    id="lessonsIdList"
-                                    values={lessonsIdList}
-                                    error={state.errors?.lessonsIdList}
-                                />
+                            <div className="col">
+                                <div className="form-floating mb-3">
+                                    <InputMask
+                                        className={`form-control ${isInvalid(
+                                            state.errors?.ssn
+                                        )}`}
+                                        id="ssn"
+                                        name="ssn"
+                                        placeholder="SSN"
+                                        mask="999-99-9999"
+                                    />
+                                    <label htmlFor="ssn">SSN</label>
+                                    <div className="invalid-feedback">
+                                        {state.errors?.ssn}
+                                    </div>
+                                </div>
                             </div>
-                            <div className="col-md-6 col-xl-4">
+                            <div className="col">
+                                <div className="form-floating mb-3">
+                                    <select
+                                        className={`form-select ${isInvalid(
+                                            state.errors?.advisorTeacherId
+                                        )}`}
+                                        id="advisorTeacherId"
+                                        name="advisorTeacherId"
+                                    >
+                                        <option value="">Select</option>
+                                        {advisorTeachers.map((item) => (
+                                            <option
+                                                value={item.teacherId}
+                                                key={item.teacherId}
+                                            >
+                                                {item.teacherName} {item.teacherSurname}
+                                            </option>
+                                        ))}
+                                    </select>
+                                    <label htmlFor="advisorTeacherId">Advisor</label>
+                                    <div className="invalid-feedback">
+                                        {state.errors?.advisorTeacherId}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col">
                                 <div className="form-floating mb-3">
                                     <input
                                         type="text"
@@ -227,7 +244,6 @@ const EditTeacherForm = ({ programs, teacher }) => {
                                         id="username"
                                         name="username"
                                         placeholder="Username"
-                                        defaultValue={teacher.username}
                                     />
                                     <label htmlFor="username">Username</label>
                                     <div className="invalid-feedback">
@@ -235,7 +251,7 @@ const EditTeacherForm = ({ programs, teacher }) => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-md-6 col-xl-4">
+                            <div className="col">
                                 <div className="form-floating mb-3">
                                     <input
                                         type="password"
@@ -252,7 +268,7 @@ const EditTeacherForm = ({ programs, teacher }) => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-md-6 col-xl-4">
+                            <div className="col">
                                 <div className="form-floating mb-3">
                                     <input
                                         type="password"
@@ -274,7 +290,7 @@ const EditTeacherForm = ({ programs, teacher }) => {
                         </div>
                         <div className="d-flex align-items-center justify-content-center gap-3">
                             <CancelButton />
-                            <SubmitButton title="Update" />
+                            <SubmitButton title="Create" />
                         </div>
                     </form>
                 </div>
@@ -282,4 +298,4 @@ const EditTeacherForm = ({ programs, teacher }) => {
         </div>
     );
 };
-export default EditTeacherForm;
+export default NewStudentForm;

@@ -2,27 +2,27 @@
 import DataTable, { Column } from "@/components/common/form-fields/data-table";
 import Link from "next/link";
 import React from "react";
-import TeacherToolbar from "./teacher-toolbar";
+import StudentToolbar from "./student-toolbar";
 
-const TeacherList = ({ data }) => {
+const StudentList = ({ data }) => {
 	const { content, totalPages, number, size } = data;
 
 	const handleToolbar = (row) => {
-		return <TeacherToolbar row={row} />;
+		return <StudentToolbar row={row} />;
 	};
 
 	return (
 		<div className="container">
 			<Link
-				href="/dashboard/teacher/new"
+				href="/dashboard/student/new"
 				className="btn btn-primary mb-3"
 			>
 				New
 			</Link>
 			<DataTable
-				title="Teacher List"
+				title="Student List"
 				dataSource={content}
-				dataKey="userId"
+				dataKey="id"
 				pagination={true}
 				totalPages={totalPages}
 				pageNumber={number}
@@ -38,4 +38,4 @@ const TeacherList = ({ data }) => {
 	);
 };
 
-export default TeacherList;
+export default StudentList;
