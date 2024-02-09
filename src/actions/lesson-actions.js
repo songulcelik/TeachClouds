@@ -48,7 +48,7 @@ export const deleteLessonAction = async (id) => {
 
 	const res = await deleteLesson(id);
 	const data = await res.json();
-	console.log(res)
+
 	if (!res.ok) {
 		throw new Error(data.message);
 	}

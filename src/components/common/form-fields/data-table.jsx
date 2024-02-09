@@ -7,7 +7,6 @@ export const Column = ({ title }) => {
 };
 
 const Row = ({ children, selected, selectionMode, onClick }) => {
-	console.log(selected);
 	return (
 		<tr
 			onClick={onClick}
@@ -41,6 +40,7 @@ const FirstPageButton = ({ pageNumber }) => {
 				className={`page-link ${pageNumber ? "" : "disabled"} `}
 				href="?page=0"
 				aria-label="Previous"
+				scroll={false}
 			>
 				<span aria-hidden="true">&laquo;</span>
 			</Link>
@@ -48,19 +48,60 @@ const FirstPageButton = ({ pageNumber }) => {
 	);
 };
 
+const PreviousPageButton = ({ pageNumber }) => {
+	return (
+		<li className="page-item  d-none d-sm-block">
+			<Link
+				className={`page-link ${pageNumber ? "" : "disabled"} `}
+				href={`?page=${pageNumber - 1}`}
+				aria-label="Previous"
+				scroll={false}
+			>
+				<span aria-hidden="true">&lsaquo;</span>
+			</Link>
+		</li>
+	);
+};
+
 const PageButton = ({ totalPages, pageNumber }) => {
-	return [...new Array(totalPages)].map((_, index) => (
+	const totalAmountOfButton = 5;
+
+	const startPage = Math.max(
+		0,
+		pageNumber - Math.floor(totalAmountOfButton / 2)
+	);
+	const endPage = Math.min(totalPages, startPage + totalAmountOfButton);
+
+	return [...new Array(endPage - startPage)].map((_, index) => (
 		<li className="page-item" key={index} aria-current="page">
 			<Link
 				className={`page-link ${
-					pageNumber === index ? "disabled" : ""
+					pageNumber === startPage + index ? "disabled" : ""
 				}`}
-				href={`?page=${index}`}
+				href={`?page=${startPage + index}`}
+				scroll={false}
 			>
-				{index + 1}
+				{startPage + index + 1}
 			</Link>
 		</li>
 	));
+};
+
+const NextPageButton = ({ totalPages, pageNumber }) => {
+	return (
+		<li className="page-item d-none d-sm-block">
+			<Link
+				className={`page-link ${
+					pageNumber >= totalPages - 1 ? "disabled" : ""
+				}`}
+				href={`?page=${pageNumber + 1}`}
+				aria-label="Next"
+				scroll={false}
+			>
+				<span aria-hidden="true">&rsaquo;</span>
+			</Link>
+		</li>
+	);
 };
 
 const LastPageButton = ({ totalPages, pageNumber }) => {
@@ -72,6 +113,7 @@ const LastPageButton = ({ totalPages, pageNumber }) => {
 				}`}
 				href={`?page=${totalPages - 1}`}
 				aria-label="Next"
+				scroll={false}
 			>
 				<span aria-hidden="true">&raquo;</span>
 			</Link>
@@ -89,9 +131,12 @@ const Pagination = ({ totalPages, pageNumber, pageSize }) => {
 		>
 			<ul className="pagination">
 				<FirstPageButton pageNumber={pageNumber} />
-
+				<PreviousPageButton pageNumber={pageNumber} />
 				<PageButton pageNumber={pageNumber} totalPages={totalPages} />
-
+				<NextPageButton
+					pageNumber={pageNumber}
+					totalPages={totalPages}
+				/>
 				<LastPageButton
 					pageNumber={pageNumber}
 					totalPages={totalPages}
@@ -138,7 +183,6 @@ const DataTable = ({
 	}
 
 	const handleSelectedItems = (id) => {
-		console.log(id);
 		let arr = [...selectedItems];
 
 		if (!arr.includes(id)) {

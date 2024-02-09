@@ -60,7 +60,6 @@ export const deleteProgram = async (id) => {
 };
 
 export const createProgram = async (payload) => {
-	console.log(JSON.stringify(payload))
 	return fetch(`${API_URL}/lessonPrograms/save`, {
 		method: "post",
 		headers: await getAuthHeader(),

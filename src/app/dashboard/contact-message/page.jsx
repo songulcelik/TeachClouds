@@ -1,24 +1,26 @@
 import PageHeader from "@/components/common/page-header";
-import Spacer from "@/components/common/spacer";
-import AssistantList from "@/components/dashboard/assistant/assistant-list";
-import { getAllAssistantsByPage } from "@/services/assistant-service";
+import Spacer from "@/components/common/misc/spacer";
+import ContactMessageList from "@/components/dashboard/contact-message/contact-message-list";
+import { getAllMessagesByPage } from "@/services/contact-service";
 import React from "react";
 
-const AssistantsPage = async ({ searchParams }) => {
+const ContactMessagePage = async ({ searchParams }) => {
 	const { page } = searchParams;
 
-	const res = await getAllAssistantsByPage(page);
+	const res = await getAllMessagesByPage(page);
 	const data = await res.json();
 	if (!res.ok) throw new Error(data.message);
 
+	data.content = data.content.map((item, index) => ({ ...item, id: index }));
+
 	return (
 		<>
-			<PageHeader title="Assistant" />
+			<PageHeader title="Messages" />
 			<Spacer height={50} />
-            <AssistantList data={data}/>
+			<ContactMessageList data={data} />
 			<Spacer />
 		</>
 	);
 };
 
-export default AssistantsPage;
+export default ContactMessagePage;

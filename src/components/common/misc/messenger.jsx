@@ -1,7 +1,6 @@
 "use client";
 import { swalToast } from "@/helpers/swal";
 import { useSearchParams } from "next/navigation";
-import React, { useEffect, useMemo } from "react";
 
 const Messenger = () => {
 	const searchParams = useSearchParams();

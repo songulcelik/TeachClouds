@@ -1,5 +1,5 @@
 import PageHeader from '@/components/common/page-header'
-import Spacer from '@/components/common/spacer'
+import Spacer from '@/components/common/misc/spacer'
 import NewTermForm from '@/components/dashboard/term/new-term-form'
 import React from 'react'
 

@@ -1,5 +1,5 @@
 import PageHeader from "@/components/common/page-header";
-import Spacer from "@/components/common/spacer";
+import Spacer from "@/components/common/misc/spacer";
 import TermList from "@/components/dashboard/term/term-list";
 import { getAllTermsByPage } from "@/services/term-service";
 import React from "react";

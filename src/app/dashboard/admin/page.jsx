@@ -1,5 +1,5 @@
 import PageHeader from "@/components/common/page-header";
-import Spacer from "@/components/common/spacer";
+import Spacer from "@/components/common/misc/spacer";
 import AdminList from "@/components/dashboard/admin/admin-list";
 import { getAllAdminsByPage } from "@/services/admin-service";
 import React from "react";

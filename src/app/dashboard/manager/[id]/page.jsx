@@ -1,5 +1,5 @@
 import PageHeader from "@/components/common/page-header";
-import Spacer from "@/components/common/spacer";
+import Spacer from "@/components/common/misc/spacer";
 import EditManagerForm from "@/components/dashboard/manager/edit-manager-form";
 import { getManagerById } from "@/services/manager-service";
 import React from "react";

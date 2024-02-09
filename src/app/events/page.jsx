@@ -1,5 +1,5 @@
 import PageHeader from '@/components/common/page-header'
-import Spacer from '@/components/common/spacer'
+import Spacer from '@/components/common/misc/spacer'
 import Events from '@/components/events/events'
 import React from 'react'
 

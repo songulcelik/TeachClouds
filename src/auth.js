@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { login } from "./services/auth-service";
-import { isUserAuthorized } from "./helpers/auth";
+import { getIsTokenValid, isUserAuthorized } from "./helpers/auth";
 
 const config = {
 	providers: [
@@ -25,14 +25,17 @@ const config = {
 	callbacks: {
 		// middleware in kapsama alanina giren sayfalara yapilan isteklerden hemen once calisir
 		authorized({ auth, request: { nextUrl } }) {
-			const isLoggedIn = !!auth?.user;
+			const isLoggedIn = !!auth?.user?.role;
 			const isOnLoginPage = nextUrl.pathname.startsWith("/login");
 			const isOnDashboardPage = nextUrl.pathname.startsWith("/dashboard");
+			const isTokenValid = getIsTokenValid(auth?.accessToken);
+
+			//console.log(auth)
 
 			//console.log(`isLoggedIn:`, isLoggedIn)
 			//console.log(`isOnLoginPage:`, isOnLoginPage)
 
-			if (isLoggedIn) {
+			if (isLoggedIn && isTokenValid) {
 				if (isOnDashboardPage) {
 					const isAuth = isUserAuthorized(
 						auth.user.role,
@@ -62,6 +65,9 @@ const config = {
 		},
 		//Session datasina ihtiyac duyan her route icin bu callback cagrilir
 		async session({ session, token }) {
+			const isTokenValid = getIsTokenValid(token.accessToken);
+			if(!isTokenValid) return null;
+
 			session.accessToken = token.accessToken;
 			session.user = token.user;
 			return session;

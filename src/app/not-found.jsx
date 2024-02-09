@@ -1,6 +1,5 @@
-import Spacer from "@/components/common/spacer";
+import Spacer from "@/components/common/misc/spacer";
 import NotFound from "@/components/errors/not-found";
-import { headers } from "next/headers";
 import React from "react";
 
 const NotFoundPage = () => {

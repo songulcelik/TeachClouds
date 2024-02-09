@@ -1,5 +1,5 @@
 "use client";
-import Spacer from "@/components/common/spacer";
+import Spacer from "@/components/common/misc/spacer";
 import Image from "next/image";
 import React, { useEffect } from "react";
 

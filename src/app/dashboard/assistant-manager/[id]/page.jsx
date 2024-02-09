@@ -1,5 +1,5 @@
 import PageHeader from "@/components/common/page-header";
-import Spacer from "@/components/common/spacer";
+import Spacer from "@/components/common/misc/spacer";
 import EditAssistantForm from "@/components/dashboard/assistant/edit-assistant-form";
 import { getAssistantById } from "@/services/assistant-service";
 import React from "react";

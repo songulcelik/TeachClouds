@@ -1,5 +1,5 @@
 import PageHeader from "@/components/common/page-header";
-import Spacer from "@/components/common/spacer";
+import Spacer from "@/components/common/misc/spacer";
 import NewTeacherForm from "@/components/dashboard/teacher/new-teacher-form";
 import { getAllPrograms } from "@/services/program-service";
 import React from "react";

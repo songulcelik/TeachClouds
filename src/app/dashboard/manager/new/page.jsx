@@ -1,5 +1,5 @@
 import PageHeader from '@/components/common/page-header'
-import Spacer from '@/components/common/spacer'
+import Spacer from '@/components/common/misc/spacer'
 import NewManagerForm from '@/components/dashboard/manager/new-manager-form'
 import React from 'react'
 

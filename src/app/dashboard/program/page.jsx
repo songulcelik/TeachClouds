@@ -1,5 +1,5 @@
 import PageHeader from "@/components/common/page-header";
-import Spacer from "@/components/common/spacer";
+import Spacer from "@/components/common/misc/spacer";
 import ProgramList from "@/components/dashboard/program/program-list";
 import UnAssignedProgramList from "@/components/dashboard/program/unassigned-program-list";
 import {

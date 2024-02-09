@@ -1,4 +1,4 @@
-import Spacer from "@/components/common/spacer";
+import Spacer from "@/components/common/misc/spacer";
 import UnAuthorized from "@/components/errors/unauthorized";
 import React from "react";
 

@@ -2,7 +2,7 @@
 import { assignProgramAction } from "@/actions/teacher-actions";
 import DataTable, { Column } from "@/components/common/form-fields/data-table";
 import SubmitButton from "@/components/common/form-fields/submit-button";
-import Spacer from "@/components/common/spacer";
+import Spacer from "@/components/common/misc/spacer";
 import { initialResponse, isInvalid } from "@/helpers/form-validation";
 import { useFormState } from "react-dom";
 
