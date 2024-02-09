@@ -1,24 +1,21 @@
 import PageHeader from "@/components/common/page-header";
 import Spacer from "@/components/common/misc/spacer";
-import EditStudentForm from "@/components/dashboard/student/edit-student-form";
-import { getStudentById } from "@/services/student-service";
-import { getAllAdvisorTeachers } from "@/services/teacher-service";
 import React from "react";
-
-const EditStudentPage = async ({ params }) => {
-	const dataStudent = (await getStudentById(params.id)).json();
-	const dataAdvisors = (await getAllAdvisorTeachers()).json();
-
-	const [student, advisorTeachers] = await Promise.all([dataStudent, dataAdvisors]);
-
-	return (
-		<>
-			<PageHeader title="Edit Student" />
-			<Spacer height={50} />
-			<EditStudentForm student={student} advisorTeachers={advisorTeachers} />
-			<Spacer />
-		</>
-	);
+import { getMeetById } from "@/services/meet-service";
+import { getAllStudentsForAdvisor } from "@/services/student-service";
+import EditMeetForm from "@/components/dashboard/meet/edit-meet-form";
+const EditMeetPage = async ({ params }) => {
+    const dataMeet = (await getMeetById(params.id)).json();
+    const dataStudents = (await getAllStudentsForAdvisor()).json();
+    const [meet, students] = await Promise.all([dataMeet, dataStudents]);
+	const arrStudents= data.map(item=>({id: item.userId, fullName: `${item.name} ${item.surName}`}))
+    return (
+        <>
+            <PageHeader title="Edit Meet" />
+            <Spacer height={50} />
+            <EditMeetForm students={students} meet={meet.object} />
+            <Spacer />
+        </>
+    );
 };
-
-export default EditStudentPage;
+export default EditMeetPage;

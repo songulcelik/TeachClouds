@@ -1,4 +1,5 @@
 "use server";
+import { formatTimeHHmm } from "@/helpers/date-time";
 import {
     convertFormDataToJson,
     getYupErrors,
@@ -9,8 +10,15 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import * as Yup from "yup";
 const FormSchema = Yup.object({
-    date: Yup.string().required("Required"),
-    description: Yup.string().required("Required"),
+    date: Yup.string()
+        .test("isDate", "Invalid date", (val) => {
+            return new Date(val) >= new Date();
+        })
+        .required("Required"),
+    description: Yup.string()
+        .min(2, "Min 2 chars")
+        .max(16, "Max 16 chars")
+        .required("Required"),
     startTime: Yup.string().required("Required"),
     stopTime: Yup.string().required("Required"),
     studentIds: Yup.string().test("isJson", "Required", (val) => {
@@ -22,7 +30,11 @@ export const createMeetAction = async (prevState, formData) => {
     try {
         const fields = convertFormDataToJson(formData);
         FormSchema.validateSync(fields, { abortEarly: false });
-        const res = await createMeet(fields);
+        const payload = {
+            ...fields,
+            studentIds: JSON.parse(fields.studentIds),
+        };
+        const res = await createMeet(payload);
         const data = await res.json();
         if (!res.ok) {
             return response(false, data?.message, data?.validations);
@@ -40,7 +52,13 @@ export const updateMeetAction = async (prevState, formData) => {
     try {
         const fields = convertFormDataToJson(formData);
         FormSchema.validateSync(fields, { abortEarly: false });
-        const res = await updateMeet(fields);
+        const payload = {
+            ...fields,
+            startTime: formatTimeHHmm(fields.startTime),
+            stopTime: formatTimeHHmm(fields.stopTime),
+            studentIds: JSON.parse(fields.studentIds),
+        };
+        const res = await updateMeet(payload);
         const data = await res.json();
         if (!res.ok) {
             return response(false, data?.message, data?.validations);
