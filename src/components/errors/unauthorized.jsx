@@ -6,7 +6,7 @@ import React from "react";
 
 const UnAuthorization = () => {
 	const handleLogout = async () => {
-		const resp = await swalConfirm("Are you sure to logout?");
+		const resp = await swalConfirm("Are you sure to logout");
 		if (!resp.isConfirmed) return;
 
 		signOut({ callbackUrl: "/login" });
@@ -27,8 +27,8 @@ const UnAuthorization = () => {
 				<div className="col-sm-6 text-center text-sm-start">
 					<h2>You are unauthorized</h2>
 					<p>
-						It looks like you're already logged in but you're trying
-						to access a page that you don't have permission to
+						It looks like you`re already logged in but you`re trying
+						to access a page that you don`t have permission to
 						visit. Please log out first and log in again with the
 						appropriate credentials or contact the system
 						administrator.

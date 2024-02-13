@@ -1,8 +1,8 @@
 import React from "react";
-import { TfiUser } from "react-icons/tfi";
 import LogoutBtn from "./logout-btn";
 import userMenuData from "@/helpers/data/user-menu.json";
 import Link from "next/link";
+import { FaUser } from "react-icons/fa";
 
 const UserMenuAuth = async ({ session }) => {
 	const userRole = session.user.role.toLowerCase();
@@ -11,13 +11,13 @@ const UserMenuAuth = async ({ session }) => {
 	return (
 		<>
 			<button
-				className="btn btn-primary"
+				className="btn btn-secondary d-flex align-items-center gap-2"
 				type="button"
 				data-bs-toggle="offcanvas"
 				data-bs-target="#Id2"
 				aria-controls="Id2"
 			>
-				<TfiUser /> {session.user?.name}
+				<FaUser /> {session.user?.name}
 			</button>
 
 			<div
@@ -44,7 +44,9 @@ const UserMenuAuth = async ({ session }) => {
 					<ul className="nav flex-column ">
 						{userMenu.map((item) => (
 							<li key={item.link} data-bs-dismiss="offcanvas">
-								<Link className="nav-link" href={item.link}>{item.title}</Link>
+								<Link className="nav-link" href={item.link}>
+									{item.title}
+								</Link>
 							</li>
 						))}
 						<li data-bs-dismiss="offcanvas">

@@ -1,5 +1,6 @@
 "use server";
 
+import { isAfter } from "@/helpers/date-time";
 import {
 	convertFormDataToJson,
 	getYupErrors,
@@ -21,21 +22,23 @@ const FormSchema = Yup.object({
 	day: Yup.string().oneOf(getDayValues(), "Invalid day").required("Required"),
 	educationTermId: Yup.string().required("Required"),
 	startTime: Yup.string().required("Required"),
-	stopTime: Yup.string().required("Required"),
+	stopTime: Yup.string()
+		.test("isafter", "Must be later than start time", (val, context) =>
+			isAfter(context.parent.startTime, val)
+		)
+		.required("Required"),
 });
 
 export const createProgramAction = async (prevState, formData) => {
 	try {
 		const fields = convertFormDataToJson(formData);
 
-		console.log(fields);
-
 		FormSchema.validateSync(fields, { abortEarly: false });
 
 		const payload = {
 			...fields,
-			lessonIdList: JSON.parse(fields.lessonIdList)
-		}
+			lessonIdList: JSON.parse(fields.lessonIdList),
+		};
 
 		const res = await createProgram(payload);
 		const data = await res.json();

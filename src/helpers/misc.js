@@ -17,3 +17,6 @@ export const getTermTitle = (item) => {
 
 	return `${termItem.label} ${time}`;
 };
+
+export const wait = (time) =>
+	new Promise((resolve) => setTimeout(() => resolve(), time));

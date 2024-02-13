@@ -16,7 +16,7 @@ const EditStudentInfoForm = ({ info, students, lessons, terms }) => {
 		<div className="container ">
 			<div className="card">
 				<div className="card-body">
-					<div className="card-title">New</div>
+					<div className="card-title">Edit</div>
 
 					{state?.message ? (
 						<div className="alert alert-danger">

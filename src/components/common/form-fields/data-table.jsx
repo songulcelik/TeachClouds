@@ -7,13 +7,14 @@ export const Column = ({ title }) => {
 };
 
 const Row = ({ children, selected, selectionMode, onClick }) => {
+	const isSelectable = selectionMode && selectionMode !== "none";
+
 	return (
 		<tr
 			onClick={onClick}
-			className={selected ? "table-primary" : ""}
+			className={isSelectable && selected ? "table-primary" : ""}
 			style={{
-				cursor:
-					selectionMode && selectionMode !== "none" ? "pointer" : "",
+				cursor: isSelectable ? "pointer" : "",
 			}}
 		>
 			{children}
@@ -65,12 +66,14 @@ const PreviousPageButton = ({ pageNumber }) => {
 
 const PageButton = ({ totalPages, pageNumber }) => {
 	const totalAmountOfButton = 5;
+	const averageAmountOfButton = Math.floor(totalAmountOfButton / 2);
 
-	const startPage = Math.max(
-		0,
-		pageNumber - Math.floor(totalAmountOfButton / 2)
-	);
+	let startPage = Math.max(0, pageNumber - averageAmountOfButton);
 	const endPage = Math.min(totalPages, startPage + totalAmountOfButton);
+
+	if (pageNumber + averageAmountOfButton >= totalPages) {
+		startPage = totalPages - totalAmountOfButton
+	}
 
 	return [...new Array(endPage - startPage)].map((_, index) => (
 		<li className="page-item" key={index} aria-current="page">

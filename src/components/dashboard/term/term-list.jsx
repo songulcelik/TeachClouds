@@ -4,6 +4,7 @@ import Link from "next/link";
 import React from "react";
 import TermToolbar from "./term-toolbar";
 import { config } from "@/helpers/config";
+import { formatDateLL } from "@/helpers/date-time";
 
 const TermList = ({ data }) => {
 	const { content, totalPages, number, size } = data;
@@ -18,6 +19,10 @@ const TermList = ({ data }) => {
 		);
 		return term.label;
 	};
+
+	const handleStartDate = (row) => formatDateLL(row.startDate);
+	const handleEndDate = (row) => formatDateLL(row.endDate);
+	const handleLastRegDate = (row) => formatDateLL(row.lastRegistrationDate);
 
 	return (
 		<div className="container">
@@ -38,11 +43,11 @@ const TermList = ({ data }) => {
 			>
 				<Column index={true} title="#" />
 				<Column title="Term" template={handleTerm} />
-				<Column title="Start" field="startDate" />
-				<Column title="End" field="endDate" />
+				<Column title="Start" template={handleStartDate} />
+				<Column title="End" template={handleEndDate} />
 				<Column
 					title="Last Registration"
-					field="lastRegistrationDate"
+					template={handleLastRegDate}
 				/>
 				<Column title="Tools" template={handleToolbar} />
 			</DataTable>

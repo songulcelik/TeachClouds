@@ -3,7 +3,7 @@ import Spacer from '@/components/common/misc/spacer'
 import Contact from '@/components/contact/contact'
 import React from 'react'
 
-const ContactPage = () => {
+const ContactPage = async () => {
   return (
     <>
       <PageHeader title="Contact"/>

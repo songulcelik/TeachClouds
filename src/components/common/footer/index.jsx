@@ -17,15 +17,15 @@ const Footer = () => {
 					</div>
 					<div className="col-sm-6 col-lg">
 						<h3>Links</h3>
-						<MainMenu className="nav flex-column"/>
+						<MainMenu className="nav flex-row flex-sm-column justify-content-center gap-3 gap-sm-0"/>
 					</div>
 					<div className="col-sm-6 col-lg">
 						<h3>Social</h3>
-						<SocialMenu className="nav flex-column" />
+						<SocialMenu className="nav flex-row flex-sm-column justify-content-center gap-3 gap-sm-0" />
 					</div>
 					<div className="col-lg">
 						<h3>Contact</h3>
-                        <ContactMenu className="nav flex-column"/>
+                        <ContactMenu className="nav flex-row flex-sm-column justify-content-center gap-3 gap-sm-0"/>
 					</div>
 				</div>
 			</div>

@@ -8,7 +8,7 @@ const LessonToolbar = ({ row }) => {
 	const { lessonId } = row;
 
 	const handleDelete = async () => {
-		const res = await swalConfirm("Are you sure to delete?");
+		const res = await swalConfirm("Are you sure to delete");
 		if (!res.isConfirmed) return;
 
 		try {

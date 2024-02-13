@@ -3,6 +3,32 @@
 @import "sweetalert2/src/variables";
 @import "sweetalert2/src/sweetalert2";
 
-a{
-    text-decoration: none;
+a {
+	text-decoration: none;
+}
+
+.placeholder{
+    background-color: $color1-opacity-50;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+}
+
+
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
+    background-color: $color1 !important;
+	border-color: $color1 !important;
+}
+
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm:focus {
+    box-shadow: none !important;
+}
+
+div:where(.swal2-icon).swal2-warning,
+div:where(.swal2-icon).swal2-info,
+div:where(.swal2-icon).swal2-question {
+    border-color: $color1-opacity-50 !important;
+    color: $color1 !important;
 }

@@ -39,7 +39,7 @@ const LoginForm = () => {
 										id="username"
 										name="username"
 										placeholder="Enter your username"
-										defaultValue="root"
+										defaultValue=""
 									/>
 									<label htmlFor="username">
 										Enter your username
@@ -62,7 +62,7 @@ const LoginForm = () => {
 										id="password"
 										name="password"
 										placeholder="Enter your password"
-										defaultValue="123456Aa."
+										defaultValue=""
 									/>
 									<label htmlFor="password">
 										Enter your password

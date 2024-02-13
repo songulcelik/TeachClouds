@@ -5,7 +5,7 @@ import { signOut } from "next-auth/react";
 
 const LogoutBtn = () => {
 	const handleLogout = async () => {
-		const resp = await swalConfirm("Are you sure to logout?");
+		const resp = await swalConfirm("Are you sure to logout");
 		if (!resp.isConfirmed) return;
 
 		signOut({ callbackUrl: "/" });

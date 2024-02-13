@@ -3,7 +3,7 @@
 
 .event-card {
 	height: 100%;
-    cursor: pointer;
+	cursor: pointer;
 
 	.card-title {
 		margin-top: 10px;
@@ -17,21 +17,26 @@
 		justify-content: space-between;
 		gap: 5px;
 		color: v.$color1;
-        font-weight: 700;
+		font-weight: 700;
 		margin-top: 5px;
 	}
 
-    .image{
-        overflow: hidden;
-    }
+	.image {
+		overflow: hidden;
+		position: relative;
+	}
 
 	img {
 		width: 100%;
 		height: auto;
-        @include m.transition(transform 0.5s)
+		@include m.transition(transform 0.5s);
 	}
 
 	&:hover {
+		.image::after {
+			@include m.fligran(v.$color1-opacity-50);
+		}
+
 		img {
 			@include m.transform(scale(1.2) rotate(10deg));
 		}

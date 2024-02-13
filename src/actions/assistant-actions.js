@@ -18,7 +18,7 @@ const FormSchema = Yup.object({
 		.oneOf(getGenderValues(), "Invalid gender")
 		.required("Required"),
 	birthPlace: Yup.string().required("Required"),
-	birthDay: Yup.string().required("Required"),
+	birthDay: Yup.date().max(new Date(), 'Invalid birthdate').required("Required"),
 	phoneNumber: Yup.string()
 		.matches(/\d{3}-\d{3}-\d{4}/, "Invalid phone number")
 		.required("Required"),

@@ -1,3 +1,4 @@
+/* Common */
 $color1: rgb(125, 200, 149);
 $color2: rgb(19, 43, 28);
 $color3: rgb(237, 237, 237);
@@ -6,11 +7,18 @@ $color2-opacity-50: rgba(19, 43, 28, 0.5);
 $color2-opacity-70: rgba(19, 43, 28, 0.7);
 $vendors: ("", "-webkit-", "-moz-", "-ms-", "-o-");
 
-// Bootstrap variables
+/* Bootstrap variables */
 $font-family-sans-serif: var(--font-montserrat);
 $primary: $color1;
 $secondary: $color2;
 $border-radius: 0;
 
-// SweetAlert
-$swal2-confirm-button-background-color: $color2;
+/* SweetAlert */
+/* Bu degiskenler ise yaramadigi icin index.scss icinde CSS ile duzenleme yapildi */
+$swal2-confirm-button-background-color  : $color1;
+$swal2-cancel-button-background-color   : $color2-opacity-50;
+$swal2-question                         : $color1-opacity-50;
+$swal2-info                             : $color1-opacity-50;
+$swal2-warning                          : $color1-opacity-50;
+$swal2-question                         : $color1-opacity-50;
+
